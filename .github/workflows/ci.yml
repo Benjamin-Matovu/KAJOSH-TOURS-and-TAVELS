@@ -1,0 +1,14 @@
+name: CI-Sanity-Check
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
+      - name: Type Check
+        run: npm run build # Next.js build includes type checking
