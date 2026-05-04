@@ -44,11 +44,10 @@ export function DatePicker({ type, error }: Props) {
   return (
     <div className={twMerge(
       clsx(
-        "flex items-center bg-white dark:bg-background-dark rounded-lg px-4 py-3 border focus-within:ring-2 focus-within:ring-primary transition-all flex-1 w-full relative",
-        error ? "border-red-500" : "border-gray-200 dark:border-gray-700"
+        "flex items-center bg-transparent transition-all flex-1 w-full relative",
+        error ? "text-red-500" : ""
       )
     )}>
-      <Calendar className="w-5 h-5 text-gray-400 mr-3" />
       
       <div className="flex-1 flex items-center justify-between">
         <div className="flex flex-col flex-1">

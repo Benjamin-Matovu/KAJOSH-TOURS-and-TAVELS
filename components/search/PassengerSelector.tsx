@@ -53,18 +53,16 @@ export function PassengerSelector() {
     <div className="relative flex-1" ref={wrapperRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-white dark:bg-background-dark rounded-lg px-4 py-3 border border-gray-200 dark:border-gray-700 hover:border-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+        className="w-full flex items-center justify-between bg-transparent transition-all focus:outline-none py-2"
       >
         <div className="flex items-center">
-          <Users className="w-5 h-5 text-gray-400 mr-3" />
           <div className="flex flex-col text-left">
-            <span className="text-xs text-textSecondary-light dark:text-textSecondary-dark">Passengers</span>
-            <span className="text-sm font-bold text-textPrimary-light dark:text-textPrimary-dark truncate max-w-[120px]">
+            <span className="text-sm font-bold text-slate-800 dark:text-white truncate max-w-[120px]">
               {summaryParts.join(', ')}
             </span>
           </div>
         </div>
-        <ChevronDown className={clsx("w-4 h-4 text-gray-400 transition-transform", isOpen && "rotate-180")} />
+        <ChevronDown className={clsx("w-4 h-4 text-slate-400 transition-transform ml-2", isOpen && "rotate-180")} />
       </button>
 
       {isOpen && (

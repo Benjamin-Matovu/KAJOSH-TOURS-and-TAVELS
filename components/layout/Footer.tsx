@@ -3,33 +3,46 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-surface-light dark:bg-surface-dark border-t border-borderC-light dark:border-borderC-dark">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="text-white font-black text-xl mb-6">KAJOSH TOURS</h3>
+            <p className="text-sm leading-relaxed max-w-xs">
+              Redefining global travel with premium flight experiences and unparalleled support. Your journey starts here.
+            </p>
+          </div>
           <div>
-            <h3 className="text-sm font-semibold text-textPrimary-light dark:text-textPrimary-dark tracking-wider uppercase mb-4">Company</h3>
+            <h3 className="text-sm font-black text-white tracking-widest uppercase mb-6">Company</h3>
             <ul className="space-y-4">
-              <li><Link href="/about" className="text-base text-textSecondary hover:text-primary">About</Link></li>
-              <li><Link href="/help" className="text-base text-textSecondary hover:text-primary">Help</Link></li>
+              <li><Link href="/about" className="hover:text-primary transition-colors font-medium">About Us</Link></li>
+              <li><Link href="/help" className="hover:text-primary transition-colors font-medium">Help Center</Link></li>
+              <li><Link href="/careers" className="hover:text-primary transition-colors font-medium">Careers</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-textPrimary-light dark:text-textPrimary-dark tracking-wider uppercase mb-4">Legal</h3>
+            <h3 className="text-sm font-black text-white tracking-widest uppercase mb-6">Legal</h3>
             <ul className="space-y-4">
-              <li><Link href="/privacy" className="text-base text-textSecondary hover:text-primary">Privacy</Link></li>
-              <li><Link href="/terms" className="text-base text-textSecondary hover:text-primary">Terms</Link></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-colors font-medium">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-primary transition-colors font-medium">Terms of Service</Link></li>
+              <li><Link href="/cookies" className="hover:text-primary transition-colors font-medium">Cookie Policy</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-textPrimary-light dark:text-textPrimary-dark tracking-wider uppercase mb-4">Contact</h3>
-            <ul className="space-y-4">
-              <li><Link href="/contact" className="text-base text-textSecondary hover:text-primary">Contact Us</Link></li>
+            <h3 className="text-sm font-black text-white tracking-widest uppercase mb-6">Contact</h3>
+            <ul className="space-y-4 text-sm font-medium">
+              <li className="flex items-center gap-2">
+                <span>+256 700 000 000</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span>support@kajosh.com</span>
+              </li>
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-borderC-light dark:border-borderC-dark pt-8 flex items-center justify-between">
-          <p className="text-base text-textSecondary xl:text-center">
-            &copy; {new Date().getFullYear()} Kajosh Tours. All rights reserved.
+        <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs font-bold uppercase tracking-widest">
+            &copy; {new Date().getFullYear()} Kajosh Tours. Built for the modern traveler.
           </p>
         </div>
       </div>
