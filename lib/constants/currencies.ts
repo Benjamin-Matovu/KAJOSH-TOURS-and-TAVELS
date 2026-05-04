@@ -1,0 +1,17 @@
+export const CURRENCIES = [
+  { code: 'USD', symbol: '$', name: 'US Dollar' },
+  { code: 'EUR', symbol: '€', name: 'Euro' },
+  { code: 'GBP', symbol: '£', name: 'British Pound' },
+  { code: 'UGX', symbol: 'UGX', name: 'Ugandan Shilling' },
+  { code: 'KES', symbol: 'KSh', name: 'Kenyan Shilling' },
+  { code: 'TZS', symbol: 'TSh', name: 'Tanzanian Shilling' },
+  { code: 'RWF', symbol: 'FRw', name: 'Rwandan Franc' },
+  { code: 'ETB', symbol: 'Br', name: 'Ethiopian Birr' },
+  { code: 'AED', symbol: 'AED', name: 'Emirati Dirham' },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee' },
+  { code: 'CNY', symbol: '¥', name: 'Chinese Yuan' },
+  { code: 'JPY', symbol: '¥', name: 'Japanese Yen' },
+  { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar' },
+  { code: 'AUD', symbol: 'A$', name: 'Australian Dollar' },
+  { code: 'ZAR', symbol: 'R', name: 'South African Rand' },
+] as const;
