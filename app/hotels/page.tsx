@@ -22,6 +22,16 @@ export default function HotelsPage() {
 
   useEffect(() => {
     async function fetchHotels() {
+      if (!supabase) {
+        setHotels([
+          { id: '1', name: 'Grand Royal Oasis', city: 'Dubai, UAE', price: 299, rating: 4.9, image_url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1000' },
+          { id: '2', name: 'Azure Bay Resort', city: 'Maldives', price: 450, rating: 4.8, image_url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000' },
+          { id: '3', name: 'The Skyline Suites', city: 'New York, USA', price: 320, rating: 4.7, image_url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000' },
+        ]);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from('hotels')
@@ -32,7 +42,6 @@ export default function HotelsPage() {
         if (data) setHotels(data);
       } catch (err) {
         console.error('Error fetching hotels:', err);
-        // Fallback to mock data if table doesn't exist yet
         setHotels([
           { id: '1', name: 'Grand Royal Oasis', city: 'Dubai, UAE', price: 299, rating: 4.9, image_url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1000' },
           { id: '2', name: 'Azure Bay Resort', city: 'Maldives', price: 450, rating: 4.8, image_url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000' },

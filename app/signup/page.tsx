@@ -24,6 +24,10 @@ export default function SignupPage() {
   };
 
   const handleSocialLogin = async (provider: 'google' | 'apple' | 'facebook') => {
+    if (!supabase) {
+      toast.error('Authentication is not configured');
+      return;
+    }
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
@@ -45,6 +49,12 @@ export default function SignupPage() {
     }
     
     setIsLoading(true);
+
+    if (!supabase) {
+      toast.error('Authentication is not configured');
+      setIsLoading(false);
+      return;
+    }
     
     try {
       const { error } = await supabase.auth.signUp({

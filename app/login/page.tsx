@@ -22,6 +22,10 @@ export default function LoginPage() {
   };
 
   const handleSocialLogin = async (provider: 'google' | 'apple' | 'facebook') => {
+    if (!supabase) {
+      toast.error('Authentication is not configured');
+      return;
+    }
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
@@ -39,6 +43,12 @@ export default function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
     
+    if (!supabase) {
+      toast.error('Authentication is not configured');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email: formData.email,

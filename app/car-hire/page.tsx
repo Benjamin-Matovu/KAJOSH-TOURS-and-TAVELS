@@ -22,6 +22,17 @@ export default function CarHirePage() {
 
   useEffect(() => {
     async function fetchCars() {
+      if (!supabase) {
+        setCategories([
+          { id: '1', name: 'Volkswagen Golf', type: 'Economy', price_per_day: 45, capacity: 5, luggage: 2, image_url: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=1000' },
+          { id: '2', name: 'Toyota RAV4', type: 'SUV', price_per_day: 75, capacity: 5, luggage: 4, image_url: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000' },
+          { id: '3', name: 'Mercedes-Benz E-Class', type: 'Luxury', price_per_day: 120, capacity: 5, luggage: 3, image_url: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=1000' },
+          { id: '4', name: 'Ford Transit', type: 'Van', price_per_day: 95, capacity: 9, luggage: 6, image_url: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1000' },
+        ]);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from('car_categories')
