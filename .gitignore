@@ -29,9 +29,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# supabase - ignore the credentials file, not the template
-lib/supabase-credentials.ts
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
