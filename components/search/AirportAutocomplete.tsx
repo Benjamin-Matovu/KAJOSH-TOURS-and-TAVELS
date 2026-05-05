@@ -55,11 +55,10 @@ export function AirportAutocomplete({ type, error }: Props) {
     <div className="relative w-full" ref={wrapperRef}>
       <div className={twMerge(
         clsx(
-          "flex items-center bg-white dark:bg-background-dark rounded-lg px-4 py-3 border focus-within:ring-2 focus-within:ring-primary transition-all",
-          error ? "border-red-500" : "border-gray-200 dark:border-gray-700"
+          "flex items-center bg-transparent transition-all",
+          error ? "text-red-500" : ""
         )
       )}>
-        <Icon className="w-5 h-5 text-gray-400 mr-3" />
         
         {selectedAirport ? (
           <div className="flex-1 flex items-center justify-between">
@@ -98,7 +97,7 @@ export function AirportAutocomplete({ type, error }: Props) {
       </div>
 
       {isOpen && !selectedAirport && query.length >= 2 && (
-        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-white dark:bg-background-dark rounded-lg shadow-xl border border-gray-100 dark:border-gray-800 max-h-60 overflow-y-auto">
+        <div className="absolute z-[9999] top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 max-h-60 overflow-y-auto">
           {results.length > 0 ? (
             <ul>
               {results.map((airport) => (

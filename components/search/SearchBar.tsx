@@ -8,7 +8,7 @@ import { AirportAutocomplete } from './AirportAutocomplete';
 import { DatePicker } from './DatePicker';
 import { PassengerSelector } from './PassengerSelector';
 import { CabinClassSelector } from './CabinClassSelector';
-import { Search, ArrowRightLeft, Loader2 } from 'lucide-react';
+import { Search, ArrowRightLeft, Loader2, Plane } from 'lucide-react';
 import { isBefore, parseISO } from 'date-fns';
 
 export function SearchBar() {
@@ -74,66 +74,71 @@ export function SearchBar() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-2xl border border-white/20 dark:border-white/10">
-      <TripTypeToggle />
+    <div className="w-full max-w-6xl mx-auto px-4">
+      <h1 className="text-4xl md:text-5xl font-black text-white mb-10 tracking-tight leading-tight">
+        Millions of cheap flights.<br/>One simple search.
+      </h1>
 
-      <div className="flex flex-col space-y-4">
-        {/* Row 1: Locations */}
-        <div className="flex flex-col md:flex-row items-center gap-4 relative">
-          <div className="w-full">
-            <AirportAutocomplete type="origin" error={!!errors.origin} />
-            {errors.origin && <p className="text-red-500 text-xs mt-1 absolute">{errors.origin}</p>}
-          </div>
-
+      <div className="bg-white rounded-xl shadow-2xl flex flex-col lg:flex-row items-stretch border-2 border-white relative">
+        {/* From */}
+        <div className="flex-1 min-w-0 border-r border-slate-200 p-4 hover:bg-slate-50 transition-colors cursor-pointer group relative">
+          <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">From</span>
+          <AirportAutocomplete type="origin" error={!!errors.origin} />
           <button 
             onClick={handleSwap}
-            className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-10 bg-white dark:bg-background-dark p-2 rounded-full shadow-md border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white border border-slate-200 p-1.5 rounded-full shadow-md hover:rotate-180 transition-all duration-300"
           >
-            <ArrowRightLeft className="w-4 h-4 text-primary" />
+            <ArrowRightLeft className="w-4 h-4 text-slate-600" />
           </button>
-
-          <div className="w-full">
-            <AirportAutocomplete type="destination" error={!!errors.destination} />
-            {errors.destination && <p className="text-red-500 text-xs mt-1 absolute">{errors.destination}</p>}
-          </div>
         </div>
 
-        {/* Row 2 & 3: Dates & Options */}
-        <div className="flex flex-col md:flex-row gap-4 mt-4">
-          <div className="flex flex-col md:flex-row gap-4 flex-1">
-            <div className="w-full">
-              <DatePicker type="departure" error={!!errors.departure} />
-              {errors.departure && <p className="text-red-500 text-xs mt-1 absolute">{errors.departure}</p>}
-            </div>
-            
-            {(tripType === 'return' || tripType === 'multi-city') && (
-              <div className="w-full">
-                <DatePicker type="return" error={!!errors.return} />
-                {errors.return && <p className="text-red-500 text-xs mt-1 absolute">{errors.return}</p>}
-              </div>
-            )}
-          </div>
+        {/* To */}
+        <div className="flex-1 min-w-0 border-r border-slate-200 p-4 hover:bg-slate-50 transition-colors cursor-pointer group">
+          <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">To</span>
+          <AirportAutocomplete type="destination" error={!!errors.destination} />
+        </div>
 
-          <div className="flex flex-col md:flex-row gap-4 flex-1">
+        {/* Depart */}
+        <div className="flex-1 min-w-0 border-r border-slate-200 p-4 hover:bg-slate-50 transition-colors cursor-pointer group">
+          <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Depart</span>
+          <DatePicker type="departure" error={!!errors.departure} />
+        </div>
+
+        {/* Return */}
+        <div className="flex-1 min-w-0 border-r border-slate-200 p-4 hover:bg-slate-50 transition-colors cursor-pointer group">
+          <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Return</span>
+          <DatePicker type="return" error={!!errors.return} />
+        </div>
+
+        {/* Travellers */}
+        <div className="flex-1 min-w-0 p-4 hover:bg-slate-50 transition-colors cursor-pointer group">
+          <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Travellers & Class</span>
+          <div className="flex items-center justify-between">
             <PassengerSelector />
             <CabinClassSelector />
           </div>
-
-          <button
-            onClick={handleSearch}
-            disabled={isLoading}
-            className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-bold text-lg transition-colors flex items-center justify-center min-w-[140px]"
-          >
-            {isLoading ? (
-              <Loader2 className="w-6 h-6 animate-spin" />
-            ) : (
-              <>
-                <Search className="w-5 h-5 mr-2" />
-                Search
-              </>
-            )}
-          </button>
         </div>
+
+        {/* Search Button */}
+        <button
+          onClick={handleSearch}
+          disabled={isLoading}
+          className="bg-primary hover:bg-blue-700 text-white px-10 py-6 font-black text-xl transition-all flex items-center justify-center min-w-[160px] active:scale-95"
+        >
+          {isLoading ? <Loader2 className="w-8 h-8 animate-spin" /> : 'Search'}
+        </button>
+      </div>
+
+      {/* Options */}
+      <div className="flex gap-6 mt-4 text-white text-sm font-bold">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+          Add nearby airports
+        </label>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+          Direct flights
+        </label>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SearchBar } from '../../components/search/SearchBar';
 import { MOCK_DESTINATIONS, MOCK_AIRPORTS } from '../../lib/mockData';
 import { useSearchStore } from '../../store/searchStore';
-import { Plane, DollarSign, ShieldCheck, Clock, ArrowRight } from 'lucide-react';
+import { Plane, DollarSign, ShieldCheck, Clock, ArrowRight, Globe } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function HomePage() {
@@ -29,59 +29,87 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
       <Toaster position="bottom-right" />
       
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-gray-900">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0" 
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=2000&h=1200")' }}
-        />
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        
-        <div className="relative z-20 w-full px-4 pt-20">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
-              Find Your Next Adventure
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
-              Search hundreds of airlines to find the cheapest tickets
-            </p>
-          </div>
-          
+      {/* 1. HERO SECTION (Skyscanner Style) */}
+      <section className="relative w-full bg-[#05203c] pt-24 pb-32">
+        <div className="max-w-7xl mx-auto">
           <SearchBar />
         </div>
       </section>
 
-      {/* 2. POPULAR DESTINATIONS SECTION */}
+      {/* 2. CATEGORY QUICK LINKS */}
+      <section className="max-w-7xl mx-auto w-full px-4 -mt-12 relative z-30">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link href="/hotels" className="bg-[#05203c] hover:bg-[#072d54] text-white p-6 rounded-xl flex items-center gap-4 transition-all shadow-xl group border border-white/5">
+            <div className="p-3 bg-white/10 rounded-lg group-hover:bg-primary transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <span className="font-bold text-lg">Hotels</span>
+          </Link>
+
+          <Link href="/car-hire" className="bg-[#05203c] hover:bg-[#072d54] text-white p-6 rounded-xl flex items-center gap-4 transition-all shadow-xl group border border-white/5">
+            <div className="p-3 bg-white/10 rounded-lg group-hover:bg-primary transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            </div>
+            <span className="font-bold text-lg">Car Hire</span>
+          </Link>
+
+          <Link href="/explore" className="bg-[#05203c] hover:bg-[#072d54] text-white p-6 rounded-xl flex items-center gap-4 transition-all shadow-xl group border border-white/5">
+            <div className="p-3 bg-white/10 rounded-lg group-hover:bg-primary transition-colors">
+              <Globe className="w-6 h-6" />
+            </div>
+            <span className="font-bold text-lg">Explore Everywhere</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* 3. BIG EXPLORE IMAGE SECTION */}
       <section className="py-20 px-4 max-w-7xl mx-auto w-full">
-        <h2 className="text-3xl font-bold mb-8 text-textPrimary-light dark:text-textPrimary-dark">
-          Popular Destinations
-        </h2>
+        <div className="relative h-[500px] rounded-[2rem] overflow-hidden group shadow-2xl">
+          <div 
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000")' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+          
+          <div className="absolute inset-y-0 left-0 p-12 flex flex-col justify-center max-w-xl">
+            <h2 className="text-white text-lg font-bold mb-4 uppercase tracking-[0.2em]">Can't decide where to go?</h2>
+            <h3 className="text-white text-5xl md:text-7xl font-black mb-8 leading-tight">Explore the<br/>world</h3>
+            <Link href="/explore" className="inline-flex items-center bg-white text-[#05203c] px-10 py-4 rounded-2xl font-black text-xl hover:bg-slate-100 transition-all w-fit shadow-xl">
+              Explore now
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. POPULAR DESTINATIONS */}
+      <section className="py-20 px-4 max-w-7xl mx-auto w-full border-t border-slate-100">
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="text-4xl font-black text-[#05203c] tracking-tight">Popular Destinations</h2>
+          <Link href="/explore" className="text-primary font-bold hover:underline">View All Destinations</Link>
+        </div>
         
-        <div className="flex overflow-x-auto pb-8 -mx-4 px-4 snap-x snap-mandatory hide-scrollbar gap-6">
-          {MOCK_DESTINATIONS.map((dest, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {MOCK_DESTINATIONS.slice(0, 4).map((dest, idx) => (
             <div 
               key={idx}
               onClick={() => handleDestinationClick(dest.iataCode)}
-              className="min-w-[280px] h-[360px] rounded-2xl relative overflow-hidden group cursor-pointer snap-start shadow-lg flex-shrink-0"
+              className="rounded-[2rem] relative overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]"
             >
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style={{ backgroundImage: `url(${dest.image})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              
-              <div className="absolute bottom-0 left-0 p-6 w-full">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-1">{dest.city}</h3>
-                    <p className="text-gray-300 text-sm">{dest.country}</p>
-                  </div>
-                  <div className="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold">
-                    from ${dest.price}
-                  </div>
+              <div className="h-[300px] overflow-hidden">
+                <div 
+                  className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${dest.image})` }}
+                />
+              </div>
+              <div className="p-6 bg-white border-t border-slate-50">
+                <h3 className="text-2xl font-black text-[#05203c] mb-1">{dest.city}</h3>
+                <p className="text-slate-500 font-bold uppercase tracking-wider text-xs">{dest.country}</p>
+                <div className="mt-4 flex justify-between items-center">
+                  <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">From</span>
+                  <span className="text-xl font-black text-primary">${dest.price}</span>
                 </div>
               </div>
             </div>
@@ -89,84 +117,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. EXPLORE BANNER SECTION */}
-      <section className="w-full bg-gradient-to-r from-primary to-blue-600 py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Not sure where to go?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Let us inspire you
-          </p>
-          <Link href="/explore" className="inline-flex items-center bg-white text-primary px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
-            Explore Everywhere
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
-      </section>
 
-      {/* 4. WHY US SECTION */}
-      <section className="py-20 px-4 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { icon: DollarSign, title: 'Best Prices', desc: 'We search hundreds of sites to find you the best deal.' },
-            { icon: ShieldCheck, title: 'No Hidden Fees', desc: 'The price you see is the price you pay. Always.' },
-            { icon: Plane, title: 'Flexible Booking', desc: 'Find flights with free cancellation and flexible dates.' },
-            { icon: Clock, title: '24/7 Support', desc: 'Our travel experts are always here to help you.' }
-          ].map((feature, idx) => (
-            <div key={idx} className="bg-white dark:bg-background-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 text-center hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <feature.icon className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-textPrimary-light dark:text-textPrimary-dark mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-textSecondary-light dark:text-textSecondary-dark">
-                {feature.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. NEWSLETTER SECTION */}
-      <section className="bg-gray-50 dark:bg-black/20 py-20 px-4 w-full border-t border-gray-100 dark:border-gray-800">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-textPrimary-light dark:text-textPrimary-dark mb-4">
-            Get the best flight deals in your inbox
-          </h2>
-          <p className="text-textSecondary-light dark:text-textSecondary-dark mb-8">
-            Subscribe to our newsletter for exclusive offers and travel inspiration.
-          </p>
-          
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-            <input 
-              type="email" 
-              required
-              placeholder="Enter your email address"
-              className="flex-1 px-6 py-3 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark focus:ring-2 focus:ring-primary outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button 
-              type="submit"
-              className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-full font-bold transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <style jsx global>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 }

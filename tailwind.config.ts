@@ -11,12 +11,12 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0770E3',
-          dark: '#084EB2',
+          DEFAULT: '#2563EB', // Electric Blue
+          navy: '#1E293B',    // Deep Navy
         },
-        secondary: '#00A698',
+        accent: '#F59E0B',    // Soft Gold
         background: {
-          light: '#F5F5F5',
+          light: '#F8FAFC',
           dark: '#0D1117',
         },
         surface: {
